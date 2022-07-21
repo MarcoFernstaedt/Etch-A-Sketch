@@ -2,7 +2,7 @@
 const container = document.getElementById("container")
 
 // adding css rules to container div
-container.style.cssText = "height: 100%; display: grid; grid-template-columns: repeat(16, 15px); grid-template-rows: repeat(16, 15px); gap: none; justify-content: center; align-items: flex-end; border: 20px solid black;"
+container.style.cssText = "height: 100%; display: grid; grid-template-columns: repeat(16, 15px); grid-template-rows: repeat(16, 15px); gap: 5px; justify-content: center; align-items: flex-end; border: 20px solid black;"
 
 // bullds div's needed for 16 x 16 grid layout
 for (let i = 0; i < 256; i++) {
@@ -15,4 +15,14 @@ for (let i = 0; i < 256; i++) {
 
     // adding div to container
     container.appendChild(div)
+}
+
+const sketchpadBtn = document.querySelector("#sketch-pad-size")
+sketchpadBtn.addEventListener("click", () => {
+    let sketchpadSize = prompt("choose size: ")
+    console.log(sketchpadSize)
+})
+
+const sketchpadSizeBtn = () => {
+
 }

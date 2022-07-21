@@ -1,11 +1,24 @@
+* {
+    border: 2px solid white;
+}
+
 body {
     margin: 0;
     padding: 0;
-    background-color: gray;
+    background-color: black;
+    color: white;
     height: 100vh;
     width: 100vw;
 }
 
 .hover {
-    background-color: black;
+    background-color: white;
+}
+
+button {
+    width: 120px;
+    height: 40px;
+    margin: 45px 850px;
+    border-radius: 120px;
+    background-color: blue;
 }
