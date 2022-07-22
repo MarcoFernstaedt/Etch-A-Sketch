@@ -1,7 +1,3 @@
-* {
-    border: 2px solid white;
-}
-
 body {
     margin: 0;
     padding: 0;
@@ -11,14 +7,9 @@ body {
     width: 100vw;
 }
 
-.hover {
-    background-color: white;
-}
-
-button {
-    width: 120px;
-    height: 40px;
-    margin: 45px 850px;
-    border-radius: 120px;
-    background-color: blue;
+.grid {
+    display: grid;
+    height: 500px;
+    width: 500px;
+    max-width: 960px;
 }
