@@ -1,34 +1,58 @@
-// grabbing container div
-const container = document.getElementById("container")
+let color = "blue";
+let click = true;
 
-// adding css rules to container div
-container.style.cssText = "max-width: 960px; display: grid; grid-template-columns: repeat(16, 15px); grid-template-rows: repeat(16, 15px); gap: 5px; justify-content: center; margin: auto; border: 2px solid white;"
+function baseBoard(size) {
+    const board = document.querySelector('.board')
+    let squares = board.querySelectorAll('div')
+    squares.forEach(div => div.remove())
+    board.style.gridTemplateColumns = `repeat(${size}, 1fr)`
+    board.style.gridTemplateRows = `repeat(${size}, 1fr)`
 
-
-let numBox = 16;
-const generateGrid = () => {
-    // bullds div's needed for 16 x 16 grid layout
-    for (let i = 0; i < numBox * numBox; i++) {
-        // creates div 
-        const div = document.createElement("div")
-        div.style.cssText = "width: 20px; height: 20px; border: .5px solid white; border-radius: 180px;"
-        // adding event lister to add a class in order to change background-color
-        div.addEventListener("mouseenter", e => div.classList.add("hover"))
-        div.addEventListener("click", e => div.classList.remove("hover"))
-        // adding div to container
-
-        container.appendChild(div)
+    let amount = size * size
+    for (let i = 0; i < amount; i++) {
+        let square = document.createElement('div');
+        square.addEventListener('mouseover', colorSquare)
+        square.style.cssText = 'background-color: gray;'
+        board.insertAdjacentElement('beforeend', square)
     }
 }
 
-generateGrid(numBox);
+baseBoard(16);
 
-// grabbing the button 
-const sketchpadBtn = document.querySelector("#sketch-pad-size")
-// adding an eventListener
-sketchpadBtn.addEventListener("click", () => {
-    // assigning input to a variable
-    numBox = prompt("choose size: ")
+function changeSize(input) {
+    if (input >= 2 || input <= 100) {
+        document.querySelector('.error').style.display = "none";
+        baseBoard(input)
+    } else {
+        document.querySelector('.error').style.display = "flex";
+    }
+}
 
-    return generateGrid(numBox)
+function colorSquare() {
+    if (click) {
+        if (color === 'random') {
+            this.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`
+        } else {
+            this.style.backgroundColor = color;
+        }
+    }
+}
+
+function changeColor(choice) {
+    color = choice
+}
+
+function resetBoard() {
+    let board = document.querySelector('.board')
+    let squares = board.querySelectorAll('div')
+    squares.forEach((div) => (div.style.backgroundColor = "gray"))
+}
+
+document.querySelector('.board').addEventListener('click', () => {
+    click = !click
+    if (click) {
+        document.querySelector('.mode').textContent = "Mode: Coloring"
+    } else {
+        document.querySelector('.mode').textContent = "Mode: Not Coloring"
+    }
 })
